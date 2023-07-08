@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<c:forEach items="list" var="cart">
+		<form action="">
+			<table align="center" >
+                <tr style="text-align: center;">
+                  <td style="width: 30px; height: 5px; padding: 0px;"><input type="checkbox" style="margin-top: 10px;"></td>
+                  <td style="width: 80px;">Image</td>
+                  <td>Item</td>
+                  <td style="width: 120px;">Price</td>
+                  <td style="width: 70px;">Qty</td>
+                  <td style="width: 120px;">Delivery</td>
+                  <td style="width: 120px;">Charge</td>
+                  <td>Total</td>
+                  <td>Choice</td>
+                </tr>
+
+				<c:forEach items="list" var="cart">
+	                <tr>
+	                  <td style="width: 30px; height: 5px; padding: 0px;"><input type="checkbox" style="margin-top: 10px;"></td>
+	                  <td style="border-left: hidden;">${cart.proimg}</td>
+	                  <td style="text-align: left; border-left: hidden;"><div id="product">${cart.proname}</div></td>
+	                  <td> 
+	                    <div style="float: left;">&#8361;</div> 
+	                    <div id="price">${cart.proprice}</div>
+	                    </td>
+	                  <td>${cart.proqty}</td>
+	                  <td>기본배송</td>
+	                  <td rowspan="${size}">[조건]</td>
+	                  <td></td>
+	                  <td>
+	                    버튼
+	                  </td>
+	                </tr>
+                </c:forEach>
+                <!-- 상품 정보 들어갈 공간 -->
+
+
+
+                <tr>
+                  <td colspan="9"><span style="float: left;">[기본배송]</span></td>
+                </tr>
+              </table>
+            </div>
+            <div style="font-size: small; color: gray; float: left; margin-top: 10px;">
+              할인 적용 금액은 주문작성의 결정예정금액에서 확인 가능합니다.
+            </div>
+            <div><hr style="width: 100%;"></div>
+            <div style="float: left; font-size: small; margin-bottom: 40px;">
+              선택상품을 
+              <input type="submit" value="삭제하기" style="background-color: gray; color: white; ">
+            </div>
+            <div style="float: right; font-size: small;">
+              <input type="submit" value="장바구니비우기" style="background-color: white; color: black; border: 1px solid black;">
+            </div>
+            <div>
+              <table style="width: 100%;" align="center" >
+		</form>
+	</c:forEach>
+</body>
+</html>

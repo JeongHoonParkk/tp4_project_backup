@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fancybox</title>
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    <style>
+        fieldset {
+            width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>이미지만 보기</legend>
+        <a data-fancybox href="images/portfolio01.jpg">이미지만 보기</a>
+    </fieldset>
+
+    <fieldset>
+        <legend>이미지 보기 - 캡션 추가</legend>
+        <a data-fancybox data-caption="대학교 리뉴얼: 한예종" href="images/portfolio01.jpg">이미지 보기</a>
+    </fieldset>
+    <fieldset>
+        <legend>갤러리 형태</legend>
+        <a data-fancybox="gallery" data-caption="캡션 01" href="images/portfolio01.jpg">이미지보기</a>
+        <a data-fancybox="gallery" data-caption="캡션 02" href="images/portfolio01.jpg">이미지보기</a>
+        <a data-fancybox="gallery" data-caption="캡션 03" href="images/portfolio01.jpg">이미지보기</a>
+        <a data-fancybox="gallery" data-caption="캡션 04" href="images/portfolio01.jpg">이미지보기</a>
+    </fieldset>
+
+    <fieldset>
+        <legend>동영상</legend>
+        <a data-fancybox="" href="https://youtu.be/WMweEpGlu_U">Youtube Video</a>
+        <br>
+        <a data-fancybox href="images/video.mp4" data-width="640" data-height="360" >MP4 Video</a>
+    </fieldset>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 제이쿼리 네트워크 방식 -->
+    <!-- 소스에 들여쓰기, 줄바꿈, 주석 무시된 압축 파일 -->
+    <!-- https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js -->
+    <!-- 주석이 정리된 비압축파일 -->
+    <!-- https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script> -->
+
+    <!-- 제이쿼리 다운로드 방식 -->
+    <script src="js/jquery.min.js"></script>
+    <script>
+        // 기본 형식
+        $(function(){
+            // $("") jQuery 선택자 형식(요소, 아이디, 클래스 등)
+            // .css() : jQuery 에서 스타일 적용
+            $("#title").css("color","red");//title 아이디를 선택해서 글자색상을 빨간색으로 설정
+        })
+    </script>
+</head>
+<body>
+    <h1 id="title">제목</h1>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 100px;
+            margin: 15px;
+            display: inline-block;
+            border: 2px solid black;
+            background: #ffd800;
+        }
+        .round1{
+            /* border-top-left-radius : 위, 왼쪽 */
+            /* 100px 50px : 가로 세로 크기만큼 둥글게 */
+            border-top-left-radius: 100px 50px;
+        }
+        .round2{
+            /* border-bottom-right-radius : 아래, 오른쪽 */
+            /* 50% 30% : 가로세로 */
+            border-bottom-right-radius: 50% 30%;
+        }
+        .round3{
+            /* border-top-right-radius : 위, 오른쪽 */
+            border-top-right-radius: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="round1"></div>
+    <div class="round2"></div>
+    <div class="round3"></div>
+</body>
+</html>

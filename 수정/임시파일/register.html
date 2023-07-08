@@ -1,0 +1,140 @@
+<!-- 조은유 -->
+    <!-- 공지 사항 게시판 -->
+    <!-- 관리자 전용 메뉴 -->
+    <div id="container">
+        <!-- 중앙 -->
+        <div id="contents">
+            <div class="notice_board">
+                <div class="board_title">
+                    <div class="path">
+                        <span>현재 위치</span>
+                        <ol>
+                            <li>
+                                <a href="tp_main.html">Home</a>
+                            </li>
+                            <li title="현재 위치">
+                                <strong>Notice</strong>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="titleArea">
+                        <h2>Notice</h2>
+                        <p>공지사항</p>
+                    </div>
+                    <!-- <div class="boardSort">
+                        <span class="board_space"></span>
+                    </div> -->
+                    
+                    <div class="notice_Border">
+                        <table border="1">
+                            <caption>게시판 목록</caption>
+                            <colgroup class="board">
+                                <col style="width: 70px;">
+                                <col style="width: 135px;" class="displaynone">
+                                <col style="width: auto;">
+                                <col style="width: 90px;">
+                                <col style="width: 80px;" class="displaynone">
+                                <col style="width: 55px;">
+                                <col style="width: 55px;" class="displaynone">
+                                <col style="width: 80px;" class="displaynone">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col" class="displaynone">category</th>
+                                    <th scope="col">Subject</th>
+                                    <th scope="col">Writer</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Hit</th>
+                                    <!-- 꼭 있어야 할까요? -->
+                                    <th class="displaynone">
+                                        추천(이미지 파일)
+                                    </th>
+                                    <th class="displaynone">
+                                        Grade(별점)
+                                    </th>
+                                    <!-- ?// -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--  -->
+                                <!-- 게시글 작성하면 입력값 받아서 등록되어야함 -->
+                                <!--  -->
+                                <tr class="record">
+                                    <td>1</td>
+                                    <td class="displaynone"></td>
+                                    <td class="notice subject">적립금 안내</td>
+                                    <td>team4</td>
+                                    <td class="displaynone">
+                                        2023-06-16
+                                    </td>
+                                    <td class="displaynone">888</td>
+                                    <!-- 꼭 있어야 할까요? -->
+                                    <td class="displaynone">0</td>
+                                    <td class="displaynone">별 이미지</td>
+                                    <!-- ?// -->
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <p class="displaynone">
+                            <!-- 띄워쓰기용? -->
+                        </p>
+                    </div>
+                    <div class="total_search">
+                        <form action="#" name="boardSearchForm" method="get" target="_self">
+                        <!-- <input type="hidden" id="board_no" name="board_no">
+                        <input type="hidden" id="page" name="page">
+                        <input type="hidden" id="board_sort" name="board_sort"> 얘넨 어떻게 쓰일까요? -->
+                            <div class="search">
+                                <fieldset>
+                                    <legend>게시물 검색</legend>
+                                    <p>
+                                        <select name="search_date" id="search_date">
+                                            <option value="week">일주일</option>
+                                            <option value="month">한달</option>
+                                            <option value="month3">세달</option>
+                                            <option value="all" selected>전체</option>
+                                        </select>
+                                        <select name="search_key" id="search_key">
+                                            <option value="subject">제목</option>
+                                            <option value="content">내용</option>
+                                            <option value="write_name">글쓴이</option>
+                                            <option value="user_id">아이디</option>
+                                            <option value="nickname">닉네임</option>
+                                        </select>
+                                        <input type="text" class="search_item">
+                                        
+                                        <!-- Search 클릭시 이동하는 페이지 삽입예정입니다 -->
+                                        <a href="#">Search </a>
+                                    </p>
+                                </fieldset>
+                            </div>
+                        </form>
+                        <div class="W_notice">
+                            <a href="#">Write</a>
+                        </div>
+                        <!-- 페이지 버튼 -->
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                  <span aria-hidden="true">&laquo;</span>
+                                </a>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">1</a></li>
+                              <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                  <span aria-hidden="true">&raquo;</span>
+                                </a>
+                              </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+     <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<style>
+    table, td{
+        border : 1px solid gray;
+        border-collapse : collapse;
+    }
+    td{
+      padding: 10px;
+      font-size: small;
+    }
+    input{
+        border: 1px solid gray;
+        /* border-radius: 5px 5px 5px 5px;  */
+        height: 25px;
+        margin-top: 4px;
+    }
+    button:hover{
+    	background-color: black;
+		color: white;
+    	
+    }
+</style>
+</head>
+<body>
+<section id="section" style="width: 600px;" >
+        <article>
+          <div id="article" style="height: auto;">
+            <div id="order">
+            
+              <form id="frm">
+              주문 상품 : <div id="product">${proname}</div>
+                <table style="width: 700px;">
+                    <tr>
+                        <td>배송지 선택</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>받으시는 분</td>
+                        <td>
+                          <input id="buyer_name" type="text" style="width: 150px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>주소 *</td>
+                        <td>
+                            <input type="text" name="postcode" id="postcode" placeholder=" 우편번호" style="width: 60px;">
+                            <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                            <input type="text" name="addr" id="addr" placeholder="  기본주소" style="width: 300px;"><br>
+                            <input type="text" id="etcaddr" placeholder="  상세주소" style="width: 300px;">
+                            <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+                    </tr>
+                    <tr>
+                        <td>휴대전화 *</td>
+                        <td>
+                            <select id="ph1">
+                                <option value="010" selected>010</option>
+                                <option value="011">011</option>
+                                <option value="016">016</option>
+                                <option value="017">017</option>
+                                <option value="018">018</option>
+                                <option value="019">019</option>      
+                            </select>
+                            -
+                            <input type="text" id="ph2" style="width: 60px;">
+                            -
+                            <input type="text" id="ph3" style="width: 60px;">
+                        </td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td>배송메세지</td>
+                        <td>
+                            <input type="text" id="memo" name="memo" style="width: 500px; height: 60px; font-size: medium;" maxlength="100px">
+                        </td>
+                    </tr>
+                    <tr> 
+						<td colspan="2"> 
+			            	총 주문 금액 : <div id="price" style="float: left;">${proprice}</div>&#8361;
+    						<div style="float: right; margin-left: 5px; margin-top: -2px">
+								<!-- 카카오페이 결제 버튼 -->
+    							<button type="button" id="kakao" onclick="consultation_request(this.id)">
+	    							<img alt="" src="resources/kakao.png" width="50px">
+    							</button>
+    						</div>
+							<div style="float: right; margin-top: -5px"><input type="button" id="pay" value="결제" onclick="consultation_request(this.id)" ></div>
+							<div style="float: right; margin-top: -5px; margin-right: 5px;"><input type="button" value="취소" onclick="cancel()" ></div>
+						</td>                   
+                    </tr>
+                </table>
+				<div class="agreeInner">
+				    <span class="agreeCheck">개인정보 수집 및 이용 동의 </span>
+			        <span class="radioW">   
+			        	<input  id="privacy_agreement0" name="privacy_agreement_radio" fw-filter="isFill" fw-label="개인정보보호정책" fw-msg="" type="checkbox">
+			            <label for="privacy_agreement0" autocomplete="on">동의함</label>
+			        </span>
+				</div>     
+            </form>
+          </div>		
+          </div>
+        </article>
+      </section>
+</body>
+<!-- 카카오페이 -->
+<script type="text/javascript" src="resources/js/kakaopay.js"></script>
+<!-- 일반결제 -->
+<script type="text/javascript" src="resources/js/pay.js"></script>
+<!-- 개인정보 수집동의 -->
+<script type="text/javascript" src="resources/js/agree.js"></script>
+<!-- 주소api -->
+<script type="text/javascript" src="resources/js/addrAPI.js"></script>
+
+<script>
+        function cancel(){
+            alert("취소시 주문정보는 저장되지 않습니다.")
+            if (confirm("취소하시겠습니까?") == true) {
+                location.href="cancel";
+            }else{
+                return false;
+            }
+        }
+    </script>
+</html>

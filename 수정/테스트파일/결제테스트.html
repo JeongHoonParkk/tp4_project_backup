@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script>
+        $(document).ready(function(){
+		
+            $('#selectPay_kakao').hide();   // 초깃값 설정
+            
+        $("input[name='payment']").change(function(){
+            // 휴대폰 결제 선택 시.
+            if($("input[name='payment']:checked").val() == '신용카드'){
+                $('#pay').show();
+                $('#_kakao').hide();
+            }	
+            // 신용카드 결제 선택 시.
+            else if($("input[name='payment']:checked").val() == '카카오페이'){
+                $('#pay').hide();
+                $('#kakao').show();
+            }
+        });
+            
+    });
+    </script>
+</head>
+<body>
+    <input type="radio" name="payment" value="신용카드" checked>신용카드
+    <input type="radio" name="payment" value="카카오페이">카카오페이
+    <div id="selectPay_card">
+        <button>안녕</button>
+    </div>
+    <div id="selectPay_kakao">
+        <button>카카오</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <link rel="stylesheet" href="orderpage.css">
+</head>
+<body>
+
+    <!-- 회원배송지 -->
+
+        
+    <table style="width: 900px;" align="center">
+        <caption align="top"><hr style="width: 900px; margin-top: 60px; margin-bottom: 40px;"></caption>
+        <tr>
+            <td colspan="2" style="border-top: hidden; border-left: hidden; border-right: hidden;">
+            <span style="float: left;"><b>배송정보</b></span>
+            </td>
+        </tr>
+        <tr>
+            <td>배송지 선택</td>
+            <td>
+                <input type="radio" name="addr" value="회원정보와동일" checked> 회원 정보와 동일
+                <input type="radio" name="addr" value="새로운배송지">새로운 배송지
+            </td>
+        </tr>
+        
+    </table>
+    <div id="userAddr"> 
+        <table style="width: 900px;" align="center">
+            <tr>
+                <td>받으시는 분</td>
+                <td>
+                    xczv
+                    <input id="buyer_name" type="text" style="width: 150px; float: left;">
+                </td>
+            </tr>
+            <tr>
+                <td>주소 *</td>
+                <td>
+                    <input type="text" name="postcode" id="postcode" placeholder=" 우편번호" style="width: 60px; float: left;">
+                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="float: left; margin-left: 5px;"><br><br>
+                    <input type="text" name="addr" id="addr" placeholder="  기본주소" style="width: 300px; float: left; margin-top: -3px;"><br><br>
+                    <input type="text" id="etcaddr" placeholder="  상세주소" style="width: 300px; float: left; margin-top: -10px;">
+                    <input type="text" id="sample6_extraAddress" placeholder="참고항목" style="float: left; margin-left: 5px; margin-top: -10px;">
+            </tr>
+            <tr>
+                <td>휴대전화 *</td>
+                <td>
+                    <select id="ph1" style="float: left;">
+                        <option value="010" selected>010</option>
+                        <option value="011">011</option>
+                        <option value="016">016</option>
+                        <option value="017">017</option>
+                        <option value="018">018</option>
+                        <option value="019">019</option>      
+                    </select>
+                    <span style="float:left; margin-left: 3px;"> -</span>
+                    <input type="text" id="ph2" style="width: 60px; float: left; margin-left: 3px; margin-top: -1px;">
+                    <span style="float:left; margin-left: 3px;"> -</span>
+                    <input type="text" id="ph3" style="width: 60px; float: left;  margin-left: 3px; margin-top: -1px">
+                </td>
+            </tr>
+            <tr>
+            <tr>
+                <td>배송메세지</td>
+                <td>
+                    <input type="text" id="memo" name="memo" style="width: 500px; height: 60px; font-size: medium; float: left;" maxlength="100px">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- 신규배송지 -->
+    <div id="newAddr"> 
+        <table style="width: 900px;" align="center">
+                <td>받으시는 분</td>
+                <td>
+                    <input id="buyer_name" type="text" style="width: 150px; float: left;">
+                </td>
+            </tr>
+            <tr>
+                <td>주소 *</td>
+                <td>
+                    <input type="text" name="postcode" id="postcode" placeholder=" 우편번호" style="width: 60px; float: left;">
+                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="float: left; margin-left: 5px;"><br><br>
+                    <input type="text" name="addr" id="addr" placeholder="  기본주소" style="width: 300px; float: left; margin-top: -3px;"><br><br>
+                    <input type="text" id="etcaddr" placeholder="  상세주소" style="width: 300px; float: left; margin-top: -10px;">
+                    <input type="text" id="sample6_extraAddress" placeholder="참고항목" style="float: left; margin-left: 5px; margin-top: -10px;">
+            </tr>
+            <tr>
+                <td>휴대전화 *</td>
+                <td>
+                    <select id="ph1" style="float: left;">
+                        <option value="010" selected>010</option>
+                        <option value="011">011</option>
+                        <option value="016">016</option>
+                        <option value="017">017</option>
+                        <option value="018">018</option>
+                        <option value="019">019</option>      
+                    </select>
+                    <span style="float:left; margin-left: 3px;"> -</span>
+                    <input type="text" id="ph2" style="width: 60px; float: left; margin-left: 3px; margin-top: -1px;">
+                    <span style="float:left; margin-left: 3px;"> -</span>
+                    <input type="text" id="ph3" style="width: 60px; float: left;  margin-left: 3px; margin-top: -1px">
+                </td>
+            </tr>
+            <tr>
+            <tr>
+                <td>배송메세지</td>
+                <td>
+                    <input type="text" id="memo" name="memo" style="width: 500px; height: 60px; font-size: medium; float: left;" maxlength="100px">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+</body>
+<script>
+    $("input[name='payment']").change(function(){
+        var test = $("input[name='payment']:checked").val();
+        alert(test);			
+    });
+    $(document).ready(function(){
+		
+        $('#newAddr').hide();   // 초깃값 설정
+            
+        $("input[name='addr']").change(function(){
+            // 휴대폰 결제 선택 시.
+            if($("input[name='addr']:checked").val() == '회원정보와동일'){
+                $('#newAddr').hide();
+                $('#userAddr').show();
+            }	
+            // 무통장입금 결제 선택 시.
+            else if($("input[name='addr']:checked").val() == '새로운배송지'){
+                $('#userAddr').hide();
+                $('#newAddr').show();
+            }
+        });
+            
+    });
+</script>
+</html>

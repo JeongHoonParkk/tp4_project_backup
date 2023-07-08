@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li{
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            margin: 10px;
+        }
+        #div1{
+            /* closest-side : 원형 중심점이 30% 40% 지점에서 모서리에 가깝게 위치*/
+            background: radial-gradient(circle closest-side at 30% 40%, white, yellow, green);
+        }
+        #div2{
+            /* closest-corner : 원형 중심점이 30% 40% 지점에서 꼭지점에 가깝게 위치*/
+            background: radial-gradient(circle closest-corner at 30% 40%, white, yellow, green);
+        }
+        #div3{
+            /* farthest-side :  원형 중심점이 30% 40% 지점에서 모서리 멀게 위치(오른쪽모서리) */
+            background: radial-gradient(circle farthest-side at 30% 40% , white, yellow, green);
+        }
+        #div4{
+            /* farthest-conrner :  원형 중심점이 30% 40% 지점에서 꼭지점 멀게 위치(오른쪽아래 모서리) */
+            background: radial-gradient(circle farthest-corner at 30% 40% , white, yellow, green);
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li id="div1"></li>
+        <li id="div2"></li>
+        <li id="div3"></li>
+        <li id="div4"></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,128 @@
+                                        <table style="width: 100%;">
+                                            <tr>
+                                                <td style="width: 60%;">
+                                                    <div class="thumbnail" style="height: 400px; float: left; ">
+                                                        <!-- 상품 이미지 사진 -->
+                                                        <img src="${ProductView.proimg}" alt="이미지">
+                                                    </div>
+                                                </td>
+                                                <td style="width: 40%;">
+                                                    <div class="infoArea">
+                                                        <table id="tbst">
+                                                            <tr style="border: 1px solid black;">
+                                                                <td style="margin-left: 10px;">
+                                                                    ${ProductView.procode} <br><br>
+                                                                    ${ProductView.catecode} <br><br>
+                                                                    <div id="proname">
+                                                                        ${ProductView.proname}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr height="40px">
+                                                                <td id="proprice">
+                                                                    <!-- 판매가 -->
+
+                                                                    ${ProductView.proprice} 원
+                                                                </td>
+                                                            </tr>
+                                                            <tr height="40px">
+                                                                <td id="prosale">
+                                                                    <!-- 할인가 -->
+                                                                    ${ProductView.prosale} 원
+                                                                </td>
+                                                            </tr>
+                                                            <tr height="40px">
+                                                                <td>
+                                                                    <!-- 배송비 -->
+                                                                    \2500 (\20,000 원 이상 구매시 무료배송)
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>상품색상 선택 <br>
+                                            <!--                         <select id="option_color" onchange="updateProductInfo()"> -->
+                                                                    <select id="optionColor">
+                                                                        <option value="" class="x"><b>[필수] option</b></option>
+                                                                        <option value="" class="x"><b>------------</b></option>
+                                                                        <optgroup label="상품옵션" selected="selected">                                         
+                                                                             <!-- <option id="color1" value="${proColor.color1}">${Gu_ProductView.color1}</option>  -->
+                                                                             <!-- <option id="color2" value="${Gu_ProductView.color2}">${Gu_ProductView.color2}</option> -->
+                                                                        </optgroup>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+				                                           <tr id="insertRow">
+				                                               <td>상품사이즈 선택 <br>
+				                                                   <select id="optionSize" onchange="updateProductInfo()">
+				                                                       <option value="" class="x"><b>[필수] option</b></option>
+				                                                       <option value="" class="x"><b>------------</b></option>
+				                                                       <optgroup label="상품옵션" selected="selected">
+				                                                           <c:forEach var="size" items="${Gu_ProductView.sizeOptions}" varStatus="status">
+				                                                               <c:if test="${not empty size}">
+				                                                                   <option id="size${status.index + 1}" value="${size}">${size}</option>
+				                                                               </c:if>
+				                                                           </c:forEach>
+				                                                            <!-- <option id="size1" value="${Gu_ProductView.size1}">${Gu_ProductView.size1}</option>  -->
+				                                                            <!-- <option id="size2" value="${Gu_ProductView.size2}">${Gu_ProductView.size2}</option> -->
+				                                                            <!-- <option id="size3" value="${Gu_ProductView.size3}">${Gu_ProductView.size3}</option>  -->
+				                                                       </optgroup>
+				                                                   </select>
+				                                               </td>
+				                                           </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <!-- 추가구성상품 토글창 미완.. -->
+
+                                                                    <!-- /토글 구역 -->
+
+                                                                    <!-- 총금액 위로 상품옵션 선택하면 행 추가됨 -->
+                                                                </td>
+                                                            </tr>
+
+                                                            <!-- 상품옵션 행 추가 -->
+                                                            <tr id="addRow">
+                                                                <td>
+                                                                    
+                                                                    <div id="total" style="margin-top:  30px;">
+                                                                        Total(총 상품 금액) : <spen id="total_Price"></spen> 원 (<spen id="total_Quantity"></spen>개)
+                                                                    </div>
+                                                                    <div style="margin-top: -1px;">
+                                                                        <p>
+                                                                            <hr style="width: 370px;">
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="product action">
+                                                                        <p>
+                                                                            <!-- onClick="location.href='tp_main_login'" 로그인 안했을시 로그인 창으로 -->
+                                                                            <!-- <input style="width: 120px; height: 40px;" type="button" id="buy" name="buy" value="Buy Now"  onClick="location.href='로그인창'"> -->
+                                                                            <input type="hidden" id="proprice" name="proprice" value="${ProductView.proprice}">
+										                                    <input type="hidden" id="proname" name="proname" value="${ProductView.proname}">
+										                                    <input type="hidden" id="procode" name="procode" value="${ProductView.procode}">
+                                                                            <input  type="button" id="buy" name="buy" value="Buy Now" onclick="checkCart()">
+                                                                            <!-- 클릭시 바로 order Form으로 간다 -->
+                                                                            <input  type="button" id="cartBtn" name="cart" value="Add to Cart">
+                                                                            <!-- 클릭시 팝업창 띄워야함 -->
+                                                                            <!-- 계속 쇼핑, 장바구니 확인, 바로구매하기 -->
+                                                                            <input  type="button" id="wishBtn" name="wish" value="Add to Wish" onclick="btn();">
+                                                                            <!-- 위시리스트에 값 넘겨야함 -->
+                                                                        </p>
+                                                                        <p>
+                                                                        <!-- 네이버 간편구매 창 -->
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>   
+                                                        <div>
+
+                                                            <!-- 상품 옵션 선택시 -->
+                                                            <!-- 상품명 / 갯수 / total가격 떠야함 -->
+                                                        </div>
+                                                    </div>                            
+                                                </td>
+                                            </tr>
+                                        </table>
