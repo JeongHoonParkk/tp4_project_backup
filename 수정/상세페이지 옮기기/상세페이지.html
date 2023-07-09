@@ -223,7 +223,7 @@ border: 2px solid red;
                               <td style="width: 50%;">
                                 <div class="thumbnail" style="height: 400px; float: left; ">
                                   <!-- 상품 이미지 사진 -->
-                                  <img src="${Gu_ProductView.proimg}" width="100%" height="100%" style="border-radius: 10%" alt="이미지">
+                                  <img src="${Gu_ProductView.proimg}" width="100%" height="100%" alt="이미지">
                                 </div>
                               </td>
 
@@ -505,17 +505,12 @@ border: 2px solid red;
     -->
           <!-- 우측사이드바 -->
           <aside id="aisdeRight">
-               <div class="rightbar">
-                   <div class="cart" style="position: absolute; top: 80px; right: 0px;">
-                       <ul>
-                           <c:if test="${ dto == null }">
-            		 			<li><a href="login" style="color: black;">Cart - 0</a></li>
-              				</c:if>
-              				<c:if test="${ dto != null }">
-              					<li><a href="Gu_cart" style="width: 200px; color: black;">Cart - 0</a></li>
-              				</c:if>
-                       </ul>
-                   </div>
+            <div class="rightbar">
+              <div class="cart" style="position: absolute; top: 80px; right: 0px;">
+                <ul>
+                  <li><a href="#" style="width: 200px; color: black;">Cart - 0</a></li>
+                </ul>
+              </div>
               <!-- 
     =================================================================
     로그인시 회원 이름 보이게 수정
@@ -551,7 +546,7 @@ border: 2px solid red;
               <!--                   </a> -->
               <!--               </fieldset>     -->
               <!--             </form> -->
-                        </div>
+              <!--           </div> -->
           </aside>
 
         </div>
@@ -953,32 +948,14 @@ border: 2px solid red;
               data: JSON.stringify(formData),
               contentType: 'application/json',
               success: function (response) {
-            	console.log(response);
                 // 요청 성공 시 실행할 동작
-//                 alert("주문페이지로 이동합니다.");
-                
-                
-//                  var form2 = document.createElement('form');
-//                 form2.setAttribute('method', 'POST');
-// //                 form2.setAttribute('action', 'orderPage');
-//                 form2.setAttribute('action', 'test');
-
-//                 var responseInput = document.createElement('input');
-//                 responseInput.setAttribute('type', 'hidden');
-//                 responseInput.setAttribute('name', 'responseData');
-//                 responseInput.setAttribute('value', JSON.stringify(response));
-
-//                 form2.appendChild(responseInput);
-//                 document.body.appendChild(form2);
-//                 form2.submit(); 
-                
-                
+                alert("주문페이지로 이동합니다.");
                 // 추가로 필요한 작업 수행
                 /*  location.href = "orderPage"; */
 
                 // procode 입력 필드 추가 
 
-            /*     var form2 = document.createElement('form');
+                var form2 = document.createElement('form');
                 var procodeInput = document.createElement('input');
                 procodeInput.setAttribute('type', 'hidden');
                 procodeInput.setAttribute('name', 'procode');
@@ -987,7 +964,10 @@ border: 2px solid red;
                 form2.setAttribute('method', 'POST');
                 form2.setAttribute('action', 'orderPage');
                 document.body.appendChild(form2);
-                form2.submit(); */
+                form2.submit();
+
+
+
 
 
               },

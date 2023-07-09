@@ -431,7 +431,10 @@ public class SMController {
 		MemDto getid = (MemDto) session.getAttribute("dto");
 //		log.info("@# id =>"+param.get("id"));
 //		model.addAttribute("idValue", param.get("id"));
-		model.addAttribute("idValue", getid.getId());
+		if (getid != null) {
+	        model.addAttribute("idValue", getid.getId());
+	    } 
+		
 		
 		log.info("@# controller productColor start");
 //		List<CoProductDto> colorDtoList = service.productColor(param);

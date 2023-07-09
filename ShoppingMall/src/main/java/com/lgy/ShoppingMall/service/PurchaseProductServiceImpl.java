@@ -25,12 +25,12 @@ public class PurchaseProductServiceImpl implements PurchaseProductService{
 	
 	//상품선택
 	@Override
-	public ArrayList<PProductDto> productSelect(HashMap<String, String> param) {//상품상세페이지
+	public PProductDto productSelect(HashMap<String, String> param) {//상품상세페이지
 		log.info("@# ProductServiceImpl.productSelect start");
 		PProductDao dao = sqlSession.getMapper(PProductDao.class);
-		ArrayList<PProductDto> list = dao.productSelect(param);
+		PProductDto dto = dao.productSelect(param);
 		log.info("@# ProductServiceImpl.productSelect end");
-		return list;
+		return dto;
 	}
 	//상품주문
 	@Override
@@ -100,13 +100,34 @@ public class PurchaseProductServiceImpl implements PurchaseProductService{
 		
 		return dto;
 	}
-	//상품 불러오
+	//상품 불러오기
 	@Override
 	public ArrayList<Gu_CartDto> selectFromCart(HashMap<String, String> param) {
 		PProductDao dao = sqlSession.getMapper(PProductDao.class);
 		log.info("@# ProductServiceImpl.selectFromCart start");
 		ArrayList<Gu_CartDto> list = dao.selectFromCart(param);
 		return list;
+	}
+//	상품수량 업데이트
+	@Override
+	public void proqtyUpdate(HashMap<String, String> param) {
+		PProductDao dao = sqlSession.getMapper(PProductDao.class);
+		log.info("@# ProductServiceImpl.proqtyUpdate start");
+		dao.proqtyUpdate(param);
+		
+	}
+//	장바구니 상태 업데이트
+	@Override
+	public void cartUpdate(HashMap<String, String> param) {
+		PProductDao dao = sqlSession.getMapper(PProductDao.class);
+		log.info("@# ProductServiceImpl.cartUpdate start");
+		dao.cartUpdate(param);
+	}
+	@Override
+	public Gu_CartDto caCheck(Gu_CartDto dto) {
+		PProductDao dao = sqlSession.getMapper(PProductDao.class);
+		Gu_CartDto dto2 = dao.caCheck(dto);
+		return dto2;
 	}
 	
 	

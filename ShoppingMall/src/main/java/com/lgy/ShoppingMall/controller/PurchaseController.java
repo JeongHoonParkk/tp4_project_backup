@@ -1,7 +1,9 @@
 package com.lgy.ShoppingMall.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,11 +11,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lgy.ShoppingMall.dto.CheckCartDto;
 import com.lgy.ShoppingMall.dto.Gu_CartDto;
 import com.lgy.ShoppingMall.dto.MemDto;
@@ -52,42 +57,17 @@ public class PurchaseController {
         log.info("@# 마이페이지 세션 getid "+ getid);
         log.info("세션에서 받은 id : " + getid.getId());
         param.put("userid", getid.getId());
+             
+
+//      상세페이지에서 오는 경우
         
-       
-	    
-	    // 세션에서 이미 장바구니에 추가된 상품 목록을 가져옴
-//	    ArrayList<String> cartItems = (ArrayList<String>) session.getAttribute("cartItems");
-//	    
-//	   
-//		   if (cartItems == null || !cartItems.contains(procode)) {
-//		        // 장바구니에 해당 상품이 없는 경우에만 추가
-//		        service.addCart(param);
-//		        log.info("장바구니 추가ㅏㅏㅏㅏㅏ");
-//		        // 장바구니에 추가된 상품 목록을 세션에 저장
-//		        if (cartItems == null) {
-//		            cartItems = new ArrayList<>();
-//		        }
-//		        cartItems.add(procode);
-//		        session.setAttribute("cartItems", cartItems);
-//		    }
-//		    
-//	        CheckCartDto dto2 = service.checkCartCode(param);
-//	        param.put("cartcode", dto2.getCartcode());
-//	        log.info("!@# cartcode === > " + param.get("cartcode"));
-//	        log.info("######@@@@@@@ CartITems : " + cartItems);
-	   
-	    
-	    
-	    
-	    // 나머지 로직 수행
-        
-//        ArrayList<PProductDto> prolist = service.productSelect(param);
+    	PProductDto dto = service.productSelect(param);
         ArrayList<Gu_CartDto> list = service.selectFromCart(param);
         log.info("list 값 => " + list);
-//        model.addAttribute("prolist", prolist);
+        model.addAttribute("proimg", dto.getProimg());
         model.addAttribute("orderPro", list);
-        
-        
+
+  
 //	    PProductDto dto = service.productSelect(param);
 //	    model.addAttribute("order", dto);
 	    
@@ -109,6 +89,54 @@ public class PurchaseController {
 	    log.info("@# orderPage end");
 	    return "orderPage";
 	}
+	
+//	상품 골라 가져오기
+	@ResponseBody
+	@RequestMapping("/your-url")
+	public ArrayList<Gu_CartDto> processFormData(@RequestBody Gu_CartDto[] formData) {
+	    // 전송된 form 데이터를 처리하는 로직을 구현
+	    ArrayList<Gu_CartDto> cart = new ArrayList<Gu_CartDto>();
+
+	    for (Gu_CartDto data : formData) {
+	        Gu_CartDto newData = new Gu_CartDto(null, null, data.getProcode(), 0, 0, 0, data.getColor(), data.getPsize(), 0, null, null, null, null, null, 0, null, null);
+	        cart.add(newData);
+	    }
+	    
+//	    ArrayList<Gu_CartDto> caDto = new ArrayList<Gu_CartDto>();
+//	    log.info("cart => " + cart);
+//	    Gu_CartDto gu_CartDto = new Gu_CartDto();
+//	    for (Gu_CartDto Dto : cart) {
+//	    	gu_CartDto = Dto;
+//	    	caDto.add(service.caCheck(gu_CartDto));
+//		}
+	    
+	    log.info("formdata : " + formData);
+	    ArrayList<String> list = new ArrayList<String>();
+	    for (Gu_CartDto data : formData) {
+	        // 데이터를 이용하여 원하는 동작 수행
+	        String color = data.getColor();
+	        String size = data.getPsize();
+	        log.info("@#@ color ==> " + color);
+	        log.info("@#@ size ==> " + size);
+	        list.add(color);
+	        list.add(size);
+	    }
+	    log.info("@#@# list => " + list);
+
+	    return cart;
+	}
+	
+    @RequestMapping("/test")
+    public void test(@RequestParam HashMap<String, String> param, Model model, HttpSession  session) {
+        // JSON 문자열을 객체로 변환
+        log.info("@#@$@@$$ => " + param);
+        
+    }
+
+	    
+	    
+	
+	
 
 //	장바구니 체크
 	@ResponseBody
@@ -151,21 +179,51 @@ public class PurchaseController {
 //		장바구니 번호 받아오기
 //		select cartcode from cart where userid = '~' and procode = '!'
 		CheckCartDto dto = service.checkCartCode(param);
+		log.info("@#@#@#@#@#@ checkcart ==> " + dto.getCartcode());
 		param.put("cartcode", dto.getCartcode());
 		
 //		param 에 cartcode put
 		
 //		주문정보 저장
+		log.info("@#@#@#@#@#@#@#@@# 주문 저장 #@#@#@#@#@#@#");
 		service.productOrd(param);
 		
-		
-		log.info("결제번호" + param.get("code"));
 		param.put("payprice", param.get("totalprice")); //주문 총가격 -> 결제가격
 		param.put("paycode", param.get("code")); //결제번호
 		
+////		상품 수량 업데이트
+//		log.info("@#@#@#@#@#@#@#@@# 상품 수량 업데이트 #@#@#@#@#@#@#");
+//		
+//		
+//		log.info("2312312313 => "+ param.get("amount") + param.get("procode"));
+//		
+//		param.put("proqty", param.get("amount"));
+//		service.proqtyUpdate(param);
+		
+		
 //		결제정보저장
+		log.info("@#@#@#@#@#@#@#@@# 결제정보 저장 #@#@#@#@#@#@#");
 		service.pay(param);
+//		
+		param.put("pocode", param.get("code"));
+		param.put("status", "2");
+		
+//		상품 출고에 저장
+		log.info("@#@#@#@#@#@#@#@@# 상품 출고에 저장 #@#@#@#@#@#@#");
+		param.put("amount", param.get("proqty"));
+		log.info("@# productOrd param => " + param);
+		service.productOut(param);
+		log.info("@#@#@#@#@#@#@#@@##@#@#@#@#@#@#");
+//		
 
+//		
+//  	장바구니 업데이트 결제여부 
+//		ispaid 1 
+		log.info("@#@#@#@#@#@#@#@@# 장바구니 업데이트 결제여부 #@#@#@#@#@#@#");
+		service.cartUpdate(param);
+		
+
+		
 		log.info("@# productOrd end");
 	}
 	
@@ -181,7 +239,7 @@ public class PurchaseController {
 	@RequestMapping( value="/orderComplete", method=RequestMethod.POST)
 	public String orderComplete(@RequestParam HashMap<String, String> param, Model model) {
 		log.info("@# orderComplete start");
-				
+		
 		model.addAttribute("ordercode", param.get("ordercode"));
 		model.addAttribute("orderdate", param.get("orderdate"));
 		

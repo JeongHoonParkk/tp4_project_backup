@@ -12,7 +12,7 @@ import com.lgy.ShoppingMall.dto.ProductOutDto;
 
 public interface PProductDao {
 	//상품선택
-	public ArrayList<PProductDto> productSelect(HashMap<String, String> param);
+	public PProductDto productSelect(HashMap<String, String> param);
 	//상품주문
 	public void productOrd(HashMap<String, String> param);
 	//결제
@@ -35,4 +35,10 @@ public interface PProductDao {
 	public CheckCartDto checkCartCode(HashMap<String, String> param);
 	//상품 불러오기
 	public ArrayList<Gu_CartDto> selectFromCart(HashMap<String, String> param);
+	//상품 수량 업데이트
+	public void proqtyUpdate(HashMap<String, String> param);
+	//장바구니 업데이트
+	public void cartUpdate(HashMap<String, String> param);
+	
+	public Gu_CartDto caCheck(Gu_CartDto dto);
 }
